@@ -15,13 +15,11 @@ const storiesDiv = document.getElementById("stories");
  * @returns {number[]} The IDs of the top stories.
  */
 function fetchTopStories(limit = 10) {
-  const API_URL =
-    "https://hacker-news.firebaseio.com/v0/topstories.json?print=pretty";
-
+  const API_URL = "https://hacker-news.firebaseio.com/v0/topstories.json?print=pretty";
   // TODO: Fetch the top stories and return their IDs.
 }
 
-/**
+/** 
  * Fetch a Hacker News story by its ID.
  *
  * @param {number} ID - The story's ID.
