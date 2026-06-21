@@ -9,8 +9,8 @@ function fetchTopStories() {
         })
         .then(function (data) {
             topTen.push(...data.slice(0, 10))
-            console.log(topTen)
-            storiesDiv.innerHTML = topTen
+            // console.log(topTen)
+            // storiesDiv.innerHTML = topTen
             Promise.all(
                 topTen.map(function (id) {
                     fetch(`https://hacker-news.firebaseio.com/v0/item/${id}.json?print=pretty`)
@@ -18,7 +18,7 @@ function fetchTopStories() {
                             return response.json()
                         })
                         .then(function (data) {
-                            storiesDiv.innerHTML += "\n" + data.title + "\n"
+                            storiesDiv.innerHTML += data.url + data.id + data.title
                         })
                 })
             )
@@ -27,6 +27,4 @@ function fetchTopStories() {
             console.log(e)
         })
 }
-// TODO: Fetch the top stories and return their IDs.
-
 fetchTopStories()
