@@ -9,13 +9,24 @@ function fetchTopStories() {
         })
         .then(function (data) {
             topTen.push(...data.slice(0, 10))
+            console.log(topTen)
+            storiesDiv.innerHTML = topTen
+            Promise.all(
+                topTen.map(function (id) {
+                    fetch(`https://hacker-news.firebaseio.com/v0/item/${id}.json?print=pretty`)
+                        .then(function (response) {
+                            return response.json()
+                        })
+                        .then(function (data) {
+                            storiesDiv.innerHTML += "\n" + data.title + "\n"
+                        })
+                })
+            )
         })
         .catch(function (e) {
             console.log(e)
         })
-    return topTen
 }
 // TODO: Fetch the top stories and return their IDs.
 
-const topStories = fetchTopStories()
-console.log(topStories)
+fetchTopStories()
