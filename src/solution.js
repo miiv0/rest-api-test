@@ -20,11 +20,13 @@ function fetchTopStories() {
                         .then(function (data) {
                             storiesDiv.innerHTML += data.url + data.id + data.title
                         })
+                    return
                 })
             )
         })
         .catch(function (e) {
             console.log(e)
         })
+    return
 }
 fetchTopStories()
